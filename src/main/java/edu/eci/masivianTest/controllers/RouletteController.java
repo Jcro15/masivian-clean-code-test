@@ -1,5 +1,4 @@
 package edu.eci.masivianTest.controllers;
-
 import edu.eci.masivianTest.exceptions.RouletteNotFoundException;
 import edu.eci.masivianTest.exceptions.RouletteRestrictionsException;
 import edu.eci.masivianTest.model.Bet;
@@ -8,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 @RestController
 @RequestMapping(value = "/roulettes")
 public class RouletteController {

@@ -1,10 +1,8 @@
 package edu.eci.masivianTest.model;
-
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import edu.eci.masivianTest.exceptions.BetAttributesException;
 import org.springframework.data.redis.core.index.Indexed;
-
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "type")
 @JsonSubTypes({
         @JsonSubTypes.Type(value = ColourBet.class, name = "colour"),

@@ -1,7 +1,5 @@
 package edu.eci.masivianTest.model;
-
 import edu.eci.masivianTest.exceptions.BetAttributesException;
-
 public class NumberBet extends Bet{
     private Integer number;
     public NumberBet(Integer number,Long amount) throws BetAttributesException {

@@ -1,10 +1,10 @@
 package edu.eci.masivianTest.model;
-
 import edu.eci.masivianTest.exceptions.RouletteRestrictionsException;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.redis.core.RedisHash;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @RedisHash("roulette")
 public class Roulette {
@@ -41,7 +41,20 @@ public class Roulette {
         if(this.state.equals(State.CLOSE)){
             throw new RouletteRestrictionsException(RouletteRestrictionsException.CLOSED_ROULETTE);
         }
-        bet.setId(Long.valueOf(this.bets.size()));
+        bet.setId((long) this.bets.size());
         this.bets.add(bet);
+    }
+    public void openRoulette(){
+        setState(State.OPEN);
+        setBets(new ArrayList<>());
+    }
+    public void closeRoulette(){
+        setState(State.CLOSE);
+        int upperBound=37;
+        Random random = new Random();
+        int winnerNumber=random.nextInt(upperBound);
+        for (Bet bet:getBets()) {
+            bet.calculateResult(winnerNumber);
+        }
     }
 }

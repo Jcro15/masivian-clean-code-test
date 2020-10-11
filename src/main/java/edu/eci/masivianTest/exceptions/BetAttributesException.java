@@ -1,5 +1,4 @@
 package edu.eci.masivianTest.exceptions;
-
 public class BetAttributesException extends Exception {
     public static final String INVALID_AMOUNT="El valor de la apuesta debe ser positivo y menor que 10000 dolares";
     public static final String INVALID_NUMBER="El numero de la apuesta debe estar entre 0 y 36";

@@ -1,18 +1,14 @@
 package edu.eci.masivianTest.services.impl;
-
 import edu.eci.masivianTest.exceptions.RouletteNotFoundException;
 import edu.eci.masivianTest.exceptions.RouletteRestrictionsException;
 import edu.eci.masivianTest.model.Bet;
 import edu.eci.masivianTest.model.Roulette;
-import edu.eci.masivianTest.model.State;
 import edu.eci.masivianTest.persistence.RouletteRepository;
 import edu.eci.masivianTest.services.RouletteServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-
 @Service
 public class RouletteServicesImpl implements RouletteServices {
     @Autowired
@@ -27,7 +23,7 @@ public class RouletteServicesImpl implements RouletteServices {
     @Override
     public void openRoulette(Long rouletteId)throws RouletteNotFoundException {
         Roulette roulette = rouletteRepository.findById(rouletteId).orElseThrow(()->new RouletteNotFoundException(RouletteNotFoundException.NOT_FOUND));
-        roulette.setState(State.OPEN);
+        roulette.openRoulette();
         rouletteRepository.save(roulette);
     }
     @Override
@@ -39,19 +35,16 @@ public class RouletteServicesImpl implements RouletteServices {
     @Override
     public List<Bet> closeRoulette(Long rouletteId) throws RouletteNotFoundException {
         Roulette roulette = rouletteRepository.findById(rouletteId).orElseThrow(()->new RouletteNotFoundException(RouletteNotFoundException.NOT_FOUND));
-        roulette.setState(State.CLOSE);
-        Random random = new Random();
-        int winnerNumber=random.nextInt(37);
-        for (Bet bet:roulette.getBets()) {
-            bet.calculateResult(winnerNumber);
-        }
+        roulette.closeRoulette();
         rouletteRepository.save(roulette);
+
         return roulette.getBets();
     }
     @Override
     public List<Roulette> getAllRoulettes() {
         ArrayList<Roulette> roulettes=new ArrayList<>();
         rouletteRepository.findAll().forEach(roulettes::add);
+
         return roulettes;
     }
 }

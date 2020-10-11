@@ -1,7 +1,5 @@
 package edu.eci.masivianTest.model;
-
 import edu.eci.masivianTest.exceptions.BetAttributesException;
-
 public class ColourBet extends Bet {
     private Colour colour;
     public ColourBet(Long amount, Colour colour) throws BetAttributesException {
@@ -9,6 +7,7 @@ public class ColourBet extends Bet {
         setColour(colour);
     }
     public Colour getColour() {
+
         return colour;
     }
     public void setColour(Colour colour) throws BetAttributesException {
