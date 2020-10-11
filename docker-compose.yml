@@ -2,9 +2,7 @@ version: '3'
 services:
   web:
     container_name: web
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: jcro15/masiviantest
     environment:
       - REDIS_HOST
     depends_on:
