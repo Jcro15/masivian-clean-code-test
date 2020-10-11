@@ -19,6 +19,8 @@ public class ColourBet extends Bet {
     }
     @Override
     public void calculateResult(int winnerNumber) {
-
+        if((colour.equals(Colour.Black)&&winnerNumber%2==1)||(colour.equals(Colour.Red)&&winnerNumber%2==0)){
+            super.setResult(super.getAmount()*1.8);
+        }
     }
 }

@@ -23,5 +23,8 @@ public class NumberBet extends Bet{
     }
     @Override
     public void calculateResult(int winnerNumber) {
+        if(winnerNumber==getNumber()){
+            super.setResult(super.getAmount()*5.0);
+        }
     }
 }

@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import edu.eci.masivianTest.exceptions.BetAttributesException;
 import org.springframework.data.redis.core.index.Indexed;
 
-
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "type")
 @JsonSubTypes({
         @JsonSubTypes.Type(value = ColourBet.class, name = "colour"),
@@ -15,10 +14,11 @@ public abstract class Bet {
     @Indexed
     private Long id;
     private Long amount;
-    private Long result;
+    private Double result;
     private Long userId;
     public Bet(Long amount) throws BetAttributesException {
         setAmount(amount);
+        this.result=0.0;
     }
     public abstract void calculateResult(int winnerNumber);
     public Long getUserId() {
@@ -48,11 +48,11 @@ public abstract class Bet {
         }
         this.amount = amount;
     }
-    public Long getResult() {
+    public Double getResult() {
 
         return result;
     }
-    public void setResult(Long result) {
+    public void setResult(Double result) {
         this.result = result;
     }
 }

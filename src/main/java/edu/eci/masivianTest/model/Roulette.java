@@ -41,6 +41,7 @@ public class Roulette {
         if(this.state.equals(State.CLOSE)){
             throw new RouletteRestrictionsException(RouletteRestrictionsException.CLOSED_ROULETTE);
         }
+        bet.setId(Long.valueOf(this.bets.size()));
         this.bets.add(bet);
     }
 }

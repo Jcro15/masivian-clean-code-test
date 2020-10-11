@@ -47,4 +47,19 @@ public class RouletteController {
             return new ResponseEntity<>(rouletteRestrictionsException.getMessage(),HttpStatus.CONFLICT);
         }
     }
+    @PatchMapping(path = "/{rouletteId}/close")
+    public ResponseEntity<?>closeRoulette(@PathVariable Long rouletteId){
+        try{
+
+            return new ResponseEntity<>(rouletteServices.closeRoulette(rouletteId),HttpStatus.OK);
+        }
+        catch (RouletteNotFoundException rouletteNotFoundException){
+
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+    @GetMapping
+    public ResponseEntity<?>getAllRoulettes(){
+        return new ResponseEntity<>(rouletteServices.getAllRoulettes(),HttpStatus.OK);
+    }
 }
