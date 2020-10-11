@@ -18,7 +18,11 @@ usar el comando
 ```
 docker-compose up -d 
 ```
-
+## Ejemplos creacion de apuestas
+### Ejemplo body apuesta de color
+![apuesta de color](img/colourBet.png)
+### Ejemplo body apuesta de numero
+![apuesta de numero](img/numberBet.png)
 ## Construido con
 
 * [Maven](https://maven.apache.org/) - Administrador de dependencias
