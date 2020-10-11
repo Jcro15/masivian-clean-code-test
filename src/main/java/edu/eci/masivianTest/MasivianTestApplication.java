@@ -7,9 +7,7 @@ import org.springframework.data.redis.repository.configuration.EnableRedisReposi
 @SpringBootApplication
 @EnableRedisRepositories
 public class MasivianTestApplication {
-
 	public static void main(String[] args) {
 		SpringApplication.run(MasivianTestApplication.class, args);
 	}
-
 }

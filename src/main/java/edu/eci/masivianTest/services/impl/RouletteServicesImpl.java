@@ -1,6 +1,8 @@
 package edu.eci.masivianTest.services.impl;
 
-import edu.eci.masivianTest.exceptions.RouletteException;
+import edu.eci.masivianTest.exceptions.RouletteNotFoundException;
+import edu.eci.masivianTest.exceptions.RouletteRestrictionsException;
+import edu.eci.masivianTest.model.Bet;
 import edu.eci.masivianTest.model.Roulette;
 import edu.eci.masivianTest.model.State;
 import edu.eci.masivianTest.persistence.RouletteRepository;
@@ -20,9 +22,15 @@ public class RouletteServicesImpl implements RouletteServices {
         return roulette.getId();
     }
     @Override
-    public void openRoulette(Long rouletteId)throws RouletteException {
-        Roulette roulette = rouletteRepository.findById(rouletteId).orElseThrow(()->new RouletteException(RouletteException.NOT_FOUND));
+    public void openRoulette(Long rouletteId)throws RouletteNotFoundException {
+        Roulette roulette = rouletteRepository.findById(rouletteId).orElseThrow(()->new RouletteNotFoundException(RouletteNotFoundException.NOT_FOUND));
         roulette.setState(State.OPEN);
+        rouletteRepository.save(roulette);
+    }
+    @Override
+    public void addBetToRoulette(Bet bet,Long rouletteId) throws RouletteNotFoundException, RouletteRestrictionsException {
+        Roulette roulette = rouletteRepository.findById(rouletteId).orElseThrow(()->new RouletteNotFoundException(RouletteNotFoundException.NOT_FOUND));
+        roulette.addBet(bet);
         rouletteRepository.save(roulette);
     }
 }

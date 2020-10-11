@@ -1,11 +1,11 @@
 package edu.eci.masivianTest.exceptions;
 
-public class RouletteException extends Exception{
+public class RouletteNotFoundException extends Exception{
     public static final String NOT_FOUND="La ruleta no se encuentra registrada";
-    public RouletteException() {
+    public RouletteNotFoundException() {
         super();
     }
-    public RouletteException(String message) {
+    public RouletteNotFoundException(String message) {
         super(message);
     }
 }
